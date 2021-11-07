@@ -1,0 +1,91 @@
+<!-- 
+	Anomaly Modconfiguration Menu strings
+	
+-->
+
+<string_table>
+	
+	<string id="ui_mcm_menu_beef_npc_anomaly">
+		<text>Beef's NPCs Die in Anomalies</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_title_1">
+		<text>Radius Settings: Outside of this radius NPCs are not affected</text>
+	</string>	
+	
+	<string id="ui_mcm_beef_npc_title_2">
+		<text>NPCs Settings</text>
+	</string>	
+	
+		<string id="ui_mcm_beef_npc_anomaly_effect_radius">
+		<text>Radius of effect in meters:</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_anomaly_effect_radius_desc">
+		<text>Outside of this radius NPCs are not affected by anomalies, regardless of their setting. This improves performance and reduces the overabundance of loot.</text>
+	</string>
+
+
+	<string id="ui_mcm_beef_npc_anomaly_companion_setting">
+		<text>Setting for Companions:</text>
+	</string>
+	<string id="ui_mcm_beef_npc_anomaly_companion_setting_desc">
+		<text>You have three options: Always affected, never affected, or affected based on chance.</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_anomaly_companion_chance">
+		<text>Companion Chance (if selected):</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_anomaly_companion_chance_desc">
+		<text>If you choose Companions to be affected based on chance, then this slider affects the percent chance they will be impacted. 0 means never affected, 1 means always affected, 0.5 means 50 percent chance they will be affected.</text>
+	</string>
+	
+	
+	<string id="ui_mcm_beef_npc_anomaly_important_npc_setting">
+		<text>Setting for Traders and other Important NPCs:</text>
+	</string>
+
+	<string id="ui_mcm_beef_npc_anomaly_important_npc_setting_desc">
+		<text>You have three options: Always affected, never affected, or affected based on chance.</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_anomaly_important_npc_chance">
+		<text>Important NPC Chance (if selected):</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_anomaly_important_npc_chance_desc">
+		<text>If you choose Important NPCs to be affected based on chance, then this slider affects the percent chance they will be impacted. 0 means never affected, 1 means always affected, 0.5 means 50 percent chance they will be affected.</text>
+	</string>
+	
+	
+	<string id="ui_mcm_beef_npc_anomaly_other_npc_setting">
+		<text>Setting for all other NPCs:</text>
+	</string>
+	<string id="ui_mcm_beef_npc_anomaly_other_npc_setting_desc">
+		<text>You have three options: Always affected, never affected, or affected based on chance.</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_anomaly_other_npc_chance">
+		<text>Other NPC Chance (if selected):</text>
+	</string>
+	
+	<string id="ui_mcm_beef_npc_anomaly_other_npc_chance_desc">
+		<text>If you choose all other NPCs to be affected based on chance, then this slider affects the percent chance they will be impacted. 0 means never affected, 1 means always affected, 0.5 means 50 percent chance they will be affected.</text>
+	</string>
+	
+	
+	<string id="ui_mcm_lst_vulnerable">
+		<text>Always affected by Anomalies</text>
+	</string>
+	
+	<string id="ui_mcm_lst_invincible">
+		<text>Never affected by Anomalies</text>
+	</string>
+	
+	<string id="ui_mcm_lst_chance_based">
+		<text>Affected based on Chance setting</text>
+	</string>
+	
+	
+</string_table>

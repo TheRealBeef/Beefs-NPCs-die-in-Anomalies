@@ -1,0 +1,67 @@
+-- Beef NPC MCM values
+local companion_setting = 2.0			--Companion value 0 = always affected, 1 = invincible, 2 = on chance
+local companion_chance = 0.5			-- Chance of companion to be affected if "on chance" selected
+local important_npc_setting = 1.0		--Quest NPCs 0 = always affected, 1 = invincible, 2 = on chance
+local important_npc_chance = 0.5			-- Chance of companion to be affected if "on chance" selected
+local other_npc_setting = 0.0			--Enemy NPCs 0 = always affected, 1 = invincible, 2 = on chance
+local other_npc_chance = 0.5			-- Chance of companion to be affected if "on chance" selected
+local effect_radius = 150.0				-- NPCs outside this radius are unaffected by anomalies
+
+
+function on_option_change()
+		companion_setting = z_npc_die_in_anomalies_mcm.get_config("companion_setting")
+		companion_chance = z_npc_die_in_anomalies_mcm.get_config("companion_chance")
+		important_npc_setting = z_npc_die_in_anomalies_mcm.get_config("important_npc_setting")
+		important_npc_chance = z_npc_die_in_anomalies_mcm.get_config("important_npc_chance")
+		other_npc_setting = z_npc_die_in_anomalies_mcm.get_config("other_npc_setting")
+		other_npc_chance = z_npc_die_in_anomalies_mcm.get_config("other_npc_chance")
+		effect_radius = z_npc_die_in_anomalies_mcm.get_config("effect_radius")
+end
+
+function get_distance(position_1, position_2)
+    local x = math.abs(position_1.x - position_2.x)
+    local z = math.abs(position_1.z - position_2.z)
+    local distance = math.sqrt(x^2 + z^2)
+    return distance
+end
+
+function npc_on_before_hit(npc,shit,bone_id,flags)
+		
+	if IsAnomaly(shit.draftsman) then
+
+		-- If we're outside of radius then skip everything
+		if get_distance(db.actor:position(), npc:position()) >= effect_radius then 
+		flags.ret_value = false	
+		return end
+		
+		local chance = (math.random(0,100) / 100.0)
+
+		-- companion checking
+		if npc:has_info("npcx_is_companion") then
+			if companion_setting == 1 or (companion_setting == 2 and companion_chance >= chance) then
+			   flags.ret_value = false
+			elseif companion_setting == 0 then return end
+			
+		-- important npc checking
+		elseif IsTrader(npc) or get_object_story_id(npc:id()) then
+			if important_npc_setting == 1 or (important_npc_setting == 2 and important_npc_chance >= chance) then
+			   flags.ret_value = false
+			elseif important_npc_setting == 0 then return 
+			end
+			
+		-- other npc checking
+		elseif IsStalker(npc) then
+			if other_npc_setting == 1 or (other_npc_setting == 2 and other_npc_chance >= chance) then
+			   flags.ret_value = false
+			elseif other_npc_setting == 0 then return end
+		end
+		
+	end
+
+end
+
+function on_game_start()
+	RegisterScriptCallback("npc_on_before_hit", npc_on_before_hit)
+	RegisterScriptCallback("on_option_change", on_option_change)
+	on_option_change()
+end

@@ -1,0 +1,35 @@
+-- If you don't use MCM, change your defaults from here.
+
+--Companion value 0 = dies, 1 = invincible, 2 = on chance
+--Quest NPCs 0 = dies, 1 = invincible, 2 = on chance
+--Enemy NPCs 0 = dies, 1 = invincible, 2 = on chance
+
+local defaults = {
+	["companion_setting"] = 2.0,
+	["companion_chance"] = 0.5,
+	["important_npc_setting"] = 1.0,
+	["important_npc_chance"] = 0.5,
+	["other_npc_setting"] = 0.0,
+	["other_npc_chance"] = 0.5,
+	["effect_radius"] = 150.0
+}
+
+function get_config(key)
+    if ui_mcm then return ui_mcm.get("beef_npc_anomaly/"..key) else return defaults[key] end
+end
+
+function on_mcm_load()
+    op = { id= "beef_npc_anomaly",sh=true ,gr={
+			{id = "title",type= "slide",link= "ui_options_slider_player",text="ui_mcm_beef_npc_title_1",size= {512,50},spacing= 20 },
+			{id = "effect_radius", type = "track", val = 2, min=25,max=600,step=25, def = 150.0},
+            {id = "title",type= "slide",link= "ui_options_slider_player",text="ui_mcm_beef_npc_title_2",size= {512,50},spacing= 20 },
+			{id = "companion_setting", type = "list", val = 2, content={ {0.0,"vulnerable"} , {1.0,"invincible"}, {2.0,"chance_based"}}, def=2.0},
+			{id = "companion_chance", type = "track", val = 2, min=0,max=1,step=0.01, def = 0.5},
+			{id = "important_npc_setting", type = "list", val = 2, content={ {0.0,"vulnerable"} , {1.0,"invincible"}, {2.0,"chance_based"}}, def=1.0},	
+			{id = "important_npc_chance", type = "track", val = 2, min=0,max=1,step=0.01, def = 0.5},
+			{id = "other_npc_setting", type = "list", val = 2, content={ {0.0,"vulnerable"} , {1.0,"invincible"}, {2.0,"chance_based"}}, def=0.0},
+			{id = "other_npc_chance", type = "track", val = 2, min=0,max=1,step=0.01, def = 0.5}
+		}
+    }
+    return op
+end
